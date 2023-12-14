@@ -359,7 +359,6 @@ async function sendLive(chatId) {
         // Отправляем сообщение о преимуществе у команды 1
         message += `Преимущество у ${data[0].teamName}: ${netWorthDire}\n\n`;
       } catch (error) {
-        /
         netWorthDire = "";
         console.log(`Преимущество не найдено для команды 1`);
       }
