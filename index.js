@@ -4,7 +4,7 @@ const fetch = require("node-fetch");
 const fs = require("fs");
 const { measureMemory } = require("vm");
 
-const botToken = "6883658917:AAGrX7N-3ek6dsCHTIhMrMnm453ZY2-oJh4"; // Замените на реальный токен вашего бота
+const botToken = "6883658917:AAGrX7N-3ek6dsCHTIhMrMnm453ZY2-oJh4"; 
 const bot = new TelegramBot(botToken, { polling: true });
 
 const start = () => {
@@ -216,7 +216,7 @@ async function sendLive(chatId) {
   const browser = await puppeteer.launch();
   const page = await browser.newPage();
 
-  // Замените 'URL_САЙТА' на адрес сайта, который вы хотите парсить
+  
   await page.goto("https://hawk.live/");
 
   // Ждем, пока страница загрузится
@@ -253,7 +253,7 @@ async function sendLive(chatId) {
           .querySelector(".match-view-draft-team__name")
           .textContent.trim();
 
-        // Check if the hero is not already picked by the same player
+      
         if (!pickedHeroes.has(`${playerName}_${heroAlt}`)) {
           pickedHeroes.add(`${playerName}_${heroAlt}`);
           team1Picks.push({
@@ -277,7 +277,7 @@ async function sendLive(chatId) {
           )
           .textContent.trim();
 
-        // Check if the hero is not already picked by the same player
+        
         if (!pickedHeroes.has(`${playerName}_${heroAlt}`)) {
           pickedHeroes.add(`${playerName}_${heroAlt}`);
           team2Picks.push({
@@ -345,7 +345,7 @@ async function sendLive(chatId) {
         (b) => b.textContent.trim()
       );
     } catch (error) {
-      // If element is not found, set netWorthDire to an empty string or handle it as appropriate
+     
       netWorthDire = "";
     }
 
@@ -359,7 +359,7 @@ async function sendLive(chatId) {
         // Отправляем сообщение о преимуществе у команды 1
         message += `Преимущество у ${data[0].teamName}: ${netWorthDire}\n\n`;
       } catch (error) {
-        // If element is not found, set netWorthDire to an empty string or handle it as appropriate
+        /
         netWorthDire = "";
         console.log(`Преимущество не найдено для команды 1`);
       }
@@ -383,7 +383,6 @@ async function sendLive(chatId) {
     // Отправляем сообщение в Telegram
     bot.sendMessage(chatId, message);
 
-    // ...
   }
 
   await browser.close();
@@ -396,13 +395,10 @@ bot.on("message", async (msg) => {
   const chatId = msg.chat.id;
 
   if (awaitingTeamNameForFind) {
-    // This is the user's response to the previous /find command
     const teamName = text;
 
-    // Reset the flag
     awaitingTeamNameForFind = false;
 
-    // Create a browser instance
     const browser = await puppeteer.launch();
     const page = await browser.newPage();
 
